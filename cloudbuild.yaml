@@ -8,6 +8,9 @@ steps:
   entrypoint: npm
   args: ['test']
 # Run custom commands
-- name: node
-  entrypoint: npm
-  args: ['run', 'build']
+# - name: node
+#   entrypoint: npm
+#   args: ['run', 'build']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/keyspace-demo-cicd/nestjs-helloworld', '.']
+images: ['gcr.io/keyspace-demo-cicd/nestjs-helloworld']
