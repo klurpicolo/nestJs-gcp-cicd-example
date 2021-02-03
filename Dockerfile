@@ -13,30 +13,45 @@
 # https://www.bretfisher.com/node-docker-good-defaults/
 # http://goldbergyoni.com/checklist-best-practice-of-node-js-in-production/
 
-FROM node:12-alpine as builder
+# FROM node:12-alpine as builder
 
-ENV NODE_ENV build
+# ENV NODE_ENV build
 
-USER node
-WORKDIR /home/node
+# USER node
+# WORKDIR /home/node
 
-COPY . /home/node
+# COPY . /home/node
 
-RUN npm ci \
-    && npm run build
+# RUN npm ci \
+#     && npm run build
 
-# ---
+# # ---
 
-FROM node:12-alpine
+# FROM node:12-alpine
 
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
-USER node
-WORKDIR /home/node
+# USER node
+# WORKDIR /home/node
 
-COPY --from=builder /home/node/package*.json /home/node/
-COPY --from=builder /home/node/dist/ /home/node/dist/
+# COPY --from=builder /home/node/package*.json /home/node/
+# COPY --from=builder /home/node/dist/ /home/node/dist/
 
-RUN npm ci
+# RUN npm ci
 
-CMD ["node", "dist/server.js"]
+# CMD ["node", "dist/server.js"]
+
+# Use a node 12 base image
+ARG NODE_VERSION=12
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /usr/src/app
+
+# Copy package.json and install node modules
+COPY package.json .
+RUN npm install
+
+# Add app source code
+ADD . /usr/src/app
+
+ENTRYPOINT npm run start
