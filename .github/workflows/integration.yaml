@@ -52,4 +52,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: klurpicolodocker/nestjs-helloworld:${GITHUB_SHA}
+          tags: klurpicolodocker/nestjs-helloworld:${{GITHUB_SHA}}
