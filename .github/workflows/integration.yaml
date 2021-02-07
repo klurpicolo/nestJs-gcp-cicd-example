@@ -38,3 +38,4 @@ jobs:
           name: klurpicolodocker/nest-js-helloworld
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: ./Dockerfile
