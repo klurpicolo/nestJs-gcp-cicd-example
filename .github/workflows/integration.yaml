@@ -27,6 +27,7 @@ jobs:
     
   push:
     runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         node-version: [14.x]
@@ -51,4 +52,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: klurpicolodocker/nestjs-helloworld:$GITHUB_SHA
+          tags: klurpicolodocker/nestjs-helloworld:${GITHUB_SHA}
