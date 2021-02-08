@@ -14,5 +14,4 @@ export class AppController {
   getMain(): string {
     return this.appService.getMain();
   }
-
 }
