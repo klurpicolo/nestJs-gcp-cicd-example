@@ -15,4 +15,9 @@ export class AppController {
     return this.appService.getMain();
   }
 
+  @Get('foo')
+  getFoo(): string {
+    return 'Foo feature';
+  }
+
 }
