@@ -3,8 +3,6 @@ name: Node.js CI
 on:
   push:
     branches: [ develop ]
-  # pull_request:
-  #   branches: [ main ]
 
 jobs:
   build:
@@ -55,8 +53,11 @@ jobs:
   #         tags: klurpicolodocker/nestjs-helloworld:${{ github.sha }}
 
   push_grc:
-    name: Setup, Build and Publish
+    name: Setup, Build, Publish and Deploy to Dev
     runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: keyspace-demo-cicd
+      GCE_INSTANCE:  nestjs-cicd-example-project
 
     steps:
     - name: Checkout
@@ -81,3 +82,9 @@ jobs:
     - name: Publish
       run: |-
         docker push "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
+
+    - name: Deploy
+      run: |-
+        gcloud compute instances update-container "$GCE_INSTANCE" \
+          --zone "$GCE_INSTANCE_ZONE" \
+          --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
