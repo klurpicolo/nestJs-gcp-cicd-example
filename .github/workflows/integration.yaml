@@ -85,6 +85,6 @@ jobs:
 
     - name: Deploy
       run: |-
-        gcloud compute instances update-container "nestjs-cicd-example-project" \
+        gcloud compute instances update-container "nestjs-cicd-example-project2" \
           --zone "us-central1-a" \
           --container-image "gcr.io/keyspace-demo-cicd/nestjs-cicd-example-project-image:$GITHUB_SHA"
