@@ -19,5 +19,4 @@ export class AppController {
   getFoo(): string {
     return 'Foo feature';
   }
-
 }

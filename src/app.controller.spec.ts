@@ -25,5 +25,4 @@ describe('AppController', () => {
       expect(appController.getFoo()).toBe('Foo feature');
     });
   });
-
 });
