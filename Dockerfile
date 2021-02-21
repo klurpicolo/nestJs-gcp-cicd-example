@@ -54,4 +54,6 @@ RUN npm install
 # Add app source code
 ADD . /usr/src/app
 
+EXPOSE 3000
+
 ENTRYPOINT npm run start
