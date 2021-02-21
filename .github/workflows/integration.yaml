@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-
+    name: Build, UnitTest and IT
     runs-on: ubuntu-latest
 
     strategy:
@@ -54,6 +54,7 @@ jobs:
 
   push_grc:
     name: Setup, Build, Publish and Deploy to Dev
+    needs: build
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: keyspace-demo-cicd
@@ -91,6 +92,7 @@ jobs:
 
   api-test:
     name: API-test
+    needs: push_grc
     runs-on: ubuntu-latest
 
     steps:
