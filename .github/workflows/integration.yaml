@@ -88,3 +88,17 @@ jobs:
         gcloud compute instances update-container "$GCE_INSTANCE" \
           --zone "$GCE_INSTANCE_ZONE" \
           --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
+
+  api-test:
+    name: API-test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: API-test
+    - uses: matt-ball/newman-action@master
+      with:
+        collection: ./postman/postman_collection.json
+        environment: ./postman/DEV.postman_environment.json
