@@ -99,11 +99,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Sleep for 60 seconds
+    - name: Sleep for 180 seconds
     #This is work around for waiting for GCP to deploy and done
       uses: jakejarvis/wait-action@master
       with:
-        time: '1m'
+        time: '3m'
 
     - name: API-test
       uses: matt-ball/newman-action@master
